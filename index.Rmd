@@ -1,0 +1,105 @@
+---
+title:
+author: "cjlortie"
+date: "2017"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+<br>
+![](./kitten.jpg)
+<br>
+
+#It is a good idea to have bad ideas in science.  
+A [recent commentary](http://www.nature.com/nature/journal/v548/n7668/full/nj7668-491a.html) to this effect inspired me to do a quick, much simpler check of my idea efficacy. The author in this self-study examined all projects completed in career (185), recorded initiation date, scored effort for each, and developed an outcome classification scale that included direct and indirect publications from each project. The author concluded that 25% of projects generated a publishable result. The assumption of this workflow that every scientific task is assigned a project folder. My folder is similar but not a perfect match. I use project folders to organize protocols and ideas, dataset folders for data and some other forms of evidence, an idea archive master folder to store all ideas, and a papers-in-progress folder with subfolders to store ideas that have some development in writing (this is now really changing thanks to GitHub and RStudio where I couple code, with notes, with data). Hence, I use a more topological approach to bad idea exploration herein.
+
+###Evidence
+```{r, evidence, warning=FALSE, message=FALSE}
+library(tidyverse)
+#topological data####
+data <- read_csv("data/idea.outcomes.csv")
+#meta-data####
+#Category refers to the major folders of research associated with scientific ideas on my local HD (i.e. parent directories). Subfolders codified here are to one-level down -first-order sub (i.e. child directories). An object was the total number of files within each parent folder. The OSX finder tool, get info, was used to count these subfolders and objects.
+
+#outcomes####
+#for simplicity, the outcome here was direct, total number of publications in print or press only - 126.  However, using my ORCID, the total 'works' estimated is at 357. This included datasets and other scientific outputs. Impactstory also indexes alt-products using ORCID. A more advanced analysis should explore sensitivity of outcome estimates.
+
+papers <- 126
+#tidy form
+tidy.data <- data %>% group_by(category) %>% gather(key = class, value = counts, subfolders, objects) %>% mutate(proportions = case_when(class == "subfolders" ~ counts/papers, class == "objects" ~ papers/counts)) %>% mutate(class = ifelse(class == "objects", "files", class))
+
+#deprecated but kept
+data <- data %>% mutate(proportion = (subfolders/papers), prop.objects = (papers/objects)) #note demominator change based on logic of by semantics
+
+#alt-crack at wrangle to address denominator issues
+#tidy.data2 <- data %>% group_by(category) %>% gather(key = class, value = counts, subfolders, objects) %>% gather(key = type, value = proportions, proportion, prop.objects) %>% select(-type) #not elegant but it got the job done, whew #better after some thought to be more tidier and to be able to stack for data viz
+
+
+```
+
+###Data Viz
+```{r, viz, warning=FALSE, message=FALSE, fig.height = 8, fig.width = 8}
+#data viz####
+ggplot(data, aes(x = reorder(category, -subfolders), subfolders)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(x = "category", y = "subfolder count within each category")
+
+ggplot(data, aes(x = reorder(category, -objects), objects)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(x = "category", y = "object count within each category")
+
+#weight by outcomes####
+#total publications
+ggplot(data, aes(x = reorder(category, -proportion), proportion)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(x = "category", y = "proportion of subfolders mapped to papers")
+
+ggplot(data, aes(x = reorder(category, -prop.objects), prop.objects)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  ylim(0,1) +
+  labs(x = "category", y = "proportion of objects mapped to papers")
+
+#for publication
+products <- read_csv("data/products.csv")
+products <- products %>% filter(category != "papers in progress") #online shared
+
+ggplot(products, aes(category, counts)) +
+  geom_bar(stat = "identity") +
+  coord_polar(direction = -1) +
+  labs(x = "", y = "net productivity online")
+
+cols <- c(files = "grey47", subfolders = "gray20")
+ggplot(tidy.data, aes(x = reorder(category, proportions), proportions, fill = class)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(breaks = seq(0,1,by = 0.5)) +
+  labs(x = "", y = "proportion mapped to papers", fill ="") +
+  coord_flip() + scale_fill_manual(values = cols) 
+
+
+
+```
+
+###Intepretations
+1. My collaborators and I collect a significant volume of independent data files.  
+2. Most folders of data ultimately become a publication (but individual data files are but stepping stones in the scientific process).  
+3. For me, data best map onto ideas suggesting a cognitive workflow associated with/grounded in ideation from observation.  
+4. Organizing ideas into project folders is a useful approach and approximately half of them become a publication in some capacity.  
+5. Ideas without context (stored in 'idea archive' on desktop) rarely become more than just that - a noted idea.  
+
+###Implications  
+Recognized open science products (with a DOI) such as published datasets, data publications, and code repositories are thus likely both a critical catalyst for new ideas for similar cognitively-minded scientists and an invaluable outcome in addition to traditional papers.  
+
+Data can embody ideas - bad and good ones!
+We must publish more of our data.
+<br>
+<br>
+
+![](./badkitty.jpg)
+<br>
