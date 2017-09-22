@@ -22,14 +22,11 @@ A simplified, direct replication of the concept of idea merit self-assessement f
   
 To provide context for the idea provenance self-study, I did a scrape of scientific outcomes published online. Papers were recorded as positive outcomes if in print with a peer-reviewed journal, but pre-prints were excluded to avoid non-independence issues. The count of papers was the primary outcome used as the denominator in the previous examination [@Kirwan2017]. Datasets published with a DOI in a repository, open slide decks published online with a recognized sharing service, independent repositories with code and data posted to GitHub, and other open science products such as conceptual figures on figshare were also recorded. Total number of independent ideas stored within a parent directory on my local HD were also included in this examination as an estimate of the total available seed pool for all these public outcomes. This more inclusive, open science perspective on outcomes showed that traditional peer-reviewed papers ranked second after the general open science products (slide decks and figures) category (Figure 1). This is likely representative of many scientists because we give many talks, and if a slide deck were posted online for many of them, it would exceed the number of publications. Conceptual figures or scientific cartoons are also likely common because many scientists turn predictions or ideas into a theoretical plot to visualize a relationship during the experimental design phase of a project. Many of these visual predictions are unsupported but faciliate sketching out the ideas for the final publication. Finally, the total count of all ideas that I allocated time to record and formally capture as an individual note within the parent folder I termed my 'idea archive' (that is certainly not a Sherlockian mind palace) nearly tripled my papers published. In my experiences within working groups, this is within the range of ideas proposed and formally captured in some written capacity. Many more ideas are wildly sown in these collaboratively endeavours but the even the germination rate drops to similar levels within my personal workflow.
 
-![](./fig1.png)  
-
-Figure 1. Scientific outcomes published online and ideas captured locally within a collective career-level scrape of productivity for an ecologist. 
-
-
+![Scientific outcomes published online and ideas captured locally within a collective career-level scrape of productivity for an ecologist. See text for full description of each scientific element class.](./fig1.png)  
 
 ###Implications  
 Am I a good idea farmer?
+Need a venue for ideas that provides both recognition, context via tags, and discoverablility by others. We currently use social media, conference presentations, and a few other channels to share ideas but aggregation and searchability is important. An idea respository like we have for data is just as important, perhaps more so, as a substrate for the advancement of science.
 
 \newpage
 ###Literature cited
