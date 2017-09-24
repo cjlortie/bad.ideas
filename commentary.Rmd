@@ -4,8 +4,8 @@ author: "cjlortie"
 editor_options:
   chunk_output_type: console
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
 fontsize: 12pt
 bibliography: bibliography.bib
 ---
