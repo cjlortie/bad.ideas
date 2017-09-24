@@ -1,12 +1,13 @@
 ---
-title: ""
+title: ''
 author: "cjlortie"
-output: pdf_document
-bibliography: bibliography.bib
-fontsize: 12pt
-editor_options: 
-  
+editor_options:
   chunk_output_type: console
+output:
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+bibliography: bibliography.bib
 ---
 
 #Idea farming: it is a good idea to have bad ideas in science.
