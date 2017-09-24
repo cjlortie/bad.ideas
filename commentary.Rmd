@@ -9,7 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-#Commentary: it is a good idea to have bad ideas in science.
+#Idea farming: it is a good idea to have bad ideas in science.
 
 ###Abstract
 There are few truly bad ideas in authentic science. We need to embrace science as a process-driven human endeavour to better understand the world around us. Products are important, but through better transparency, we can leverage ideas, good and bad, ours and others, to do better science. In a brief commentary here inspired by a recent discussion of the topic and previous introspections by other ecologists, it is proposed that whilst it is a good idea to track ideas and all the processes that generate outcomes such as publications, there is inherent merit in all scientific ideas. That said, organizing and framing our ideas into the networks that we already use to examine hypotheses and questions in science is a window into our workflows including ideation, implementation, data analyses, and how we can better map ideas into open science outcomes. Formalizing and describing the linkages between ideas, data, and projects we produce as scientists will enhance and diversify the value of the work we do individually and collectively.
